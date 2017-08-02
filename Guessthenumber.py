@@ -10,7 +10,7 @@
 # the numbers.
 
 import random
-from RollingDice import _numbergenerator
+from RollingDice import numbergenerator
 
 
 # Set the session start value with a positive integer
@@ -18,7 +18,4 @@ _flag = 1
 # Set the maximum value of the predicted number
 _range = 999
 # Generate a random number
-_generatedNumber = _numbergenerator(_range)
-
-
-
+_generatedNumber = numbergenerator(_range)

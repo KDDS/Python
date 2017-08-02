@@ -18,7 +18,7 @@ _flag = 1
 # function to generate random faces
 
 
-def _numbergenerator(_faces):
+def numbergenerator(_faces):
     """ Returns a random positive integer with range between 1 and the entered value"""
     _randomNumber = random.randint(1, _faces)
     return _randomNumber
@@ -29,7 +29,7 @@ while _flag >= 0:
     # Set up the dice model
     _faces = int(input(r"Enter a number from 1 to 10 to specify your dice"));
     # print the generated number
-    _generatedNumber = _numbergenerator(_faces)
+    _generatedNumber = numbergenerator(_faces)
     print("Dice side drawn : ", _generatedNumber);
     # user input
     _retry = input("Type Q to quit else retry luck !!!").upper()
