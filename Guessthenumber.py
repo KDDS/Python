@@ -9,7 +9,6 @@
 # difference between the inputted number and the randomly generated numbers, and to then compare
 # the numbers.
 
-import random
 from RollingDice import numbergenerator
 
 
@@ -19,3 +18,19 @@ _flag = 1
 _range = 999
 # Generate a random number
 _generatedNumber = numbergenerator(_range)
+_unmatchedGuess = 1
+# Guess the number
+
+while _flag == 1:
+    _guessedNumber = int(input("Enter your guess"))
+            if abs(_guessedNumber - _generatedNumber) > 15:
+                print("Number is too big!!, Guess again. ")
+            elif abs(_guessedNumber - _generatedNumber) > 5:
+                print("Number is big!!, Guess again. ")
+            elif abs(_guessedNumber - _generatedNumber) > 1:
+                print("Close guess !!")
+            else:
+                print("Accurate Guess.")
+    exit
+
+
