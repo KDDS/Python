@@ -8,29 +8,45 @@
 # should appear. You’ll need functions to check if the user input is an actual number, to see the
 # difference between the inputted number and the randomly generated numbers, and to then compare
 # the numbers.
+import random
 
-from RollingDice import numbergenerator
+
+# function to generate random faces
 
 
-# Set the session start value with a positive integer
+def numbergenerator(_faces):
+    """ Returns a random positive integer with range between 1 and the entered value"""
+    _randomNumber = random.randint(1, _faces)
+    return _randomNumber
+
+# Setting the session values
 _flag = 1
+_retries = 0
+_max_retry = 13
 # Set the maximum value of the predicted number
 _range = 999
 # Generate a random number
 _generatedNumber = numbergenerator(_range)
-_unmatchedGuess = 1
+print ("You have {0} chances for an accurate guess !".format(_max_retry))
 # Guess the number
 
-while _flag == 1:
+while _flag > 0 or _retries < _max_retry :
+    _retries = _retries + 1
     _guessedNumber = int(input("Enter your guess"))
-            if abs(_guessedNumber - _generatedNumber) > 15:
-                print("Number is too big!!, Guess again. ")
-            elif abs(_guessedNumber - _generatedNumber) > 5:
-                print("Number is big!!, Guess again. ")
-            elif abs(_guessedNumber - _generatedNumber) > 1:
-                print("Close guess !!")
-            else:
-                print("Accurate Guess.")
+    if abs(_guessedNumber - _generatedNumber) > 50:
+      print("Guess is wayyy bigger -_-")
+    elif abs(_guessedNumber - _generatedNumber) > 15:
+      print("Guess is big!!, try again. ")
+    elif abs(_guessedNumber - _generatedNumber) > 5:
+      print("Close guess.")
+    elif abs(_guessedNumber - _generatedNumber) > 1:
+      print("Almost there!!!")
+    else:
+      print("Bull's eye. number {0} correctly guessed".format (_generatedNumber))
+      _flag == -1
     exit
-
-
+    
+if _retries > _max_retry:
+  print("out of luck. Poor you. The number was {0}".format(_generatedNumber))
+else
+  print("You")
