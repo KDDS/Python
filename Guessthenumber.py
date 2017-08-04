@@ -21,32 +21,53 @@ def numbergenerator(_faces):
 
 # Setting the session values
 _flag = 1
-_retries = 0
-_max_retry = 13
+_retries = 1
+_max_retry = 4
+_score = 0
 # Set the maximum value of the predicted number
-_range = 999
+_range = 15
 # Generate a random number
 _generatedNumber = numbergenerator(_range)
 print ("You have {0} chances for an accurate guess !".format(_max_retry))
 # Guess the number
 
-while _flag > 0 or _retries < _max_retry :
-    _retries = _retries + 1
-    _guessedNumber = int(input("Enter your guess"))
-    if abs(_guessedNumber - _generatedNumber) > 50:
-      print("Guess is wayyy bigger -_-")
-    elif abs(_guessedNumber - _generatedNumber) > 15:
-      print("Guess is big!!, try again. ")
+while _flag > 0 or _retries <= _max_retry:
+    _guessedNumber = int(input("Luck pot:[{0}]. Enter your guess :- ".format(_max_retry - _retries+1)))
+    if abs(_guessedNumber - _generatedNumber) > 10:
+        print("Guess is wayyy bigger. ")
+        _score = _score + 10
+    elif abs(_guessedNumber - _generatedNumber) > 8:
+        print("Guess is big!!, try again. ")
+        _score = _score + 25
     elif abs(_guessedNumber - _generatedNumber) > 5:
-      print("Close guess.")
-    elif abs(_guessedNumber - _generatedNumber) > 1:
-      print("Almost there!!!")
+        print("Close guess. ")
+        _score = _score + 50
+    elif abs(_guessedNumber - _generatedNumber) >= 1:
+        print("Almost there!!! ")
+        _score = _score + 80
     else:
-      print("Bull's eye. number {0} correctly guessed".format (_generatedNumber))
-      _flag == -1
-    exit
+        print("Bull's eye. number {0} correctly guessed".format(_generatedNumber))
+        _score = _score + 100
+        _flag = -1
+
+    _retries = _retries + 1
     
-if _retries > _max_retry:
-  print("out of luck. Poor you. The number was {0}".format(_generatedNumber))
-else
-  print("You")
+    if _retries > _max_retry:
+        print("You ran out of luck. Poor you, the number was {0}".format(_generatedNumber))
+        _flag = -1
+
+    # user input
+    if _flag == -1:
+        print("Your score is {0} ".format(_score))
+        _retry = input("Type Q to quit else retry luck !!!").upper()
+        if _retry == 'Q':
+            # Setting flag less than 1 quits the while loop
+            _flag = -1
+            print("Thanks for playing !!!")
+        else:
+            _flag = 1
+            _retries = 0
+            _score = 0
+
+
+
