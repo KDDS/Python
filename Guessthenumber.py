@@ -8,6 +8,7 @@
 # should appear. You’ll need functions to check if the user input is an actual number, to see the
 # difference between the inputted number and the randomly generated numbers, and to then compare
 # the numbers.
+
 import random
 
 
@@ -20,19 +21,25 @@ def numbergenerator(_faces):
     return _randomNumber
 
 # Setting the session values
-_flag = 1
+_flag = 1 # negative flag kills the game
 _retries = 1
 _max_retry = 4
 _score = 0
-# Set the maximum value of the predicted number
+
+# Set the maximum value of the random number
 _range = 15
+
 # Generate a random number
 _generatedNumber = numbergenerator(_range)
 print ("You have {0} chances for an accurate guess !".format(_max_retry))
-# Guess the number
 
+# Guess the number
 while _flag > 0 or _retries <= _max_retry:
+
+    # Print the option numbers
     _guessedNumber = int(input("Luck pot:[{0}]. Enter your guess :- ".format(_max_retry - _retries+1)))
+
+    # Hints to guide to the predicted number
     if abs(_guessedNumber - _generatedNumber) > 10:
         print("Guess is wayyy bigger. ")
         _score = _score + 10
@@ -50,21 +57,24 @@ while _flag > 0 or _retries <= _max_retry:
         _score = _score + 100
         _flag = -1
 
+    # Increment options for next run
     _retries = _retries + 1
-    
+
+    # Out of options
     if _retries > _max_retry:
         print("You ran out of luck. Poor you, the number was {0}".format(_generatedNumber))
         _flag = -1
 
-    # user input
+    # user input for Game retry.
     if _flag == -1:
         print("Your score is {0} ".format(_score))
         _retry = input("Type Q to quit else retry luck !!!").upper()
         if _retry == 'Q':
-            # Setting flag less than 1 quits the while loop
+            # Setting flag less than -1 quits the while loop (game)
             _flag = -1
             print("Thanks for playing !!!")
         else:
+            # Resetting the session value for a new game
             _flag = 1
             _retries = 0
             _score = 0
